@@ -3,7 +3,7 @@
 
 using namespace std;
 
-const int N = 14;
+const int N = 10;
 int counter = 0;
 
 bool done(int state[N]){

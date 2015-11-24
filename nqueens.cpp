@@ -5,15 +5,15 @@ using namespace std;
 
 const int N = 10;
 int position[N];
+int counter;
 
 bool legal(int number, int row){
-	for (int i = 0; i < number; i++)
-	{
-		int check = position[i];
+	for (int x = 0; x < number; x++){
+		int check = position[x];
 
 		if (check == row ||
-			check == row - (number - i) || 
-			check == row + (number - i))
+			check == row - (number - x) || 
+			check == row + (number - x))
 			return false;
 	}
 	return true;
@@ -23,25 +23,23 @@ void recurse(int sent){
 	if (sent == N){
 		cout << "Valid board: ";
 		for (int x = 0; x < N; x++)
-			cout << position[i] << " ";
+			cout << position[x] << " ";
 		cout << endl;
-	}
-	else
-	{
-		for (int i = 0; i < N; i++)
-		{
-			if (legal(sent, i))
-			{
-				position[sent] = i;
+	}else{
+		for (int x = 0; x < N; x++){
+			if (legal(sent, x)){
+				position[sent] = x;
+				counter++;
 				recurse(sent + 1);
 			}
 		}
 	}
 }
 
-int main()
-{
+int main(){
+	counter = 0;
 	recurse(0);
+	cout << counter << endl;
 
 	return 0;
 }
